@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import Radar from './Radar';
 
 export default {
@@ -75,13 +76,22 @@ export default {
       },
       control: { type: 'color' }
     },
+    onChartClick: {
+      name: 'onChartClick',
+      action: 'chartClicked',
+      description: 'Event handler for when the chart is clicked.',
+      table: {
+        type: { summary: 'function' },
+      },
+      control: { type: null },
+    },
   },
 };
 
 const Template = (args) => {
-  const { color1, color2, color3, ...restArgs } = args;
+  const { color1, color2, color3, onChartClick, ...restArgs } = args;
   const colors = [color1, color2, color3];
-  return <Radar {...restArgs} colors={colors} />;
+  return <Radar {...restArgs} colors={colors} onChartClick={onChartClick} />;
 };
 
 export const Default = Template.bind({});
@@ -96,4 +106,5 @@ Default.args = {
   color1: 'rgba(124,73,156,0.3)',
   color2: 'rgba(141,149,196,0.3)',
   color3: 'rgba(146,179,213,0.3)',
+  onChartClick: action('On Chart clicking'),
 };

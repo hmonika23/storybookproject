@@ -2,12 +2,12 @@ import React from 'react';
 import { View } from 'react-native';
 import Svg, { Polygon, Line, Text, Circle, G } from 'react-native-svg';
 
-const Radar = ({ dataSets, labels, dataLabels, colors }) => {
+const Radar = ({ dataSets, labels, dataLabels, colors, onChartClick }) => {
   const numAxes = labels.length;
   const centerX = 100;
   const centerY = 100;
   const radius = 100;
- const maxValue =100;
+  const maxValue = 100;
   const rotationAngle = -18; // Adjust the angle to align the pentagon side horizontally
 
   // Calculate points for a regular polygon
@@ -23,7 +23,7 @@ const Radar = ({ dataSets, labels, dataLabels, colors }) => {
     const levelRadius = radius * ((i + 1) / 5);
     const points = Array.from({ length: numAxes }, (_, j) =>
       `${calculatePoint(levelRadius, j).x},${calculatePoint(levelRadius, j).y}`
-    ).join(" ");
+    ).join(' ');
     return <Polygon key={i} points={points} stroke="#ddd" fill="none" />;
   });
 
@@ -47,13 +47,13 @@ const Radar = ({ dataSets, labels, dataLabels, colors }) => {
     return (
       <G transform={`rotate(${Math.abs(rotationAngle)}, ${centerX}, ${centerY})`}>
         {/* Position Circle and Text horizontally */}
-        <Circle cx={labelX} cy={labelY} r="2" fill={colors[index].replace("0.3", "1")} />
+        <Circle cx={labelX} cy={labelY} r="2" fill={colors[index].replace('0.3', '1')} />
         <Text
           x={labelX + 8} // Offset Text slightly to the right of Circle
-          y={labelY + 3}   // Adjust Y to vertically align with the Circle center
+          y={labelY + 3} // Adjust Y to vertically align with the Circle center
           fontSize="10"
           textAnchor="start"
-          fill={colors[index].replace("0.3", "1")}
+          fill={colors[index].replace('0.3', '1')}
         >
           {dataLabels[index]}
         </Text>
@@ -64,8 +64,8 @@ const Radar = ({ dataSets, labels, dataLabels, colors }) => {
   // Data polygons with circles on each vertex and side captions
   const dataPolygons = dataSets.map((data, index) => {
     const dataPoints = data.map((value, i) => calculatePoint(value, i));
-    const pointsString = dataPoints.map(point => `${point.x},${point.y}`).join(" ");
-    
+    const pointsString = dataPoints.map(point => `${point.x},${point.y}`).join(' ');
+
     // Position for the label next to each polygon
     const labelX = centerX + radius + 50;
     const labelY = centerY - radius + index * 20;
@@ -75,7 +75,7 @@ const Radar = ({ dataSets, labels, dataLabels, colors }) => {
         <Polygon
           points={pointsString}
           fill={colors[index]}
-          stroke={colors[index].replace("0.3", "1")}
+          stroke={colors[index].replace('0.3', '1')}
           strokeWidth="2"
         />
         {dataPoints.map((point, i) => (
@@ -84,7 +84,7 @@ const Radar = ({ dataSets, labels, dataLabels, colors }) => {
             cx={point.x}
             cy={point.y}
             r="2"
-            fill={colors[index].replace("0.3", "1")}
+            fill={colors[index].replace('0.3', '1')}
           />
         ))}
         {/* Label for each dataset */}
@@ -112,10 +112,24 @@ const Radar = ({ dataSets, labels, dataLabels, colors }) => {
     );
   });
 
+  // Handle chart click
+  const handleChartClick = (event) => {
+    if (onChartClick) {
+      console.log("Inside Handle click")
+      onChartClick(console.log("Clicked on chart"));
+    }
+  };
+
   return (
     <View>
       {/* Apply -18 degree rotation to align one side horizontally */}
-      <Svg width="400" height="400" viewBox="-80 -50 400 400" transform={`rotate(${rotationAngle}, ${centerX}, ${centerY})`}>
+      <Svg
+        width="400"
+        height="400"
+        viewBox="-80 -50 400 400"
+        transform={`rotate(${rotationAngle}, ${centerX}, ${centerY})`}
+        onPress={handleChartClick} // Attach the click event handler
+      >
         {gridCircles}
         {axisLines}
         {dataPolygons}
