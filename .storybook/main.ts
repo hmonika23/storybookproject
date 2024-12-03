@@ -10,7 +10,8 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-react-native-web",
     "@storybook/addon-webpack5-compiler-babel",
-    "@chromatic-com/storybook"
+    "@chromatic-com/storybook",
+    "storybook-addon-storybooktoprefab"
   ],
 
   framework: {
@@ -22,5 +23,10 @@ module.exports = {
 
   typescript: {
     reactDocgen: "react-docgen-typescript"
-  }
+  },
+
+  // staticDirs: [{ from: '../public/prefabs', to: '/' }],
+
+  
+  staticDirs: [{ from: '../build/prefab', to: '/' }],
 };

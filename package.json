@@ -14,7 +14,8 @@
     "storybook": "cross-env STORYBOOK_ENABLED='true' expo start",
     "storybook:ios": "cross-env STORYBOOK_ENABLED='true' expo start --ios",
     "storybook:android": "cross-env STORYBOOK_ENABLED='true' expo start --android",
-    "chromatic": "npx chromatic --project-token=chpt_e6508476dc09feb"
+    "chromatic": "npx chromatic --project-token=chpt_e6508476dc09feb",
+    "generate:prefab": "node ./node_modules/@wavemaker/prefab-generator/src/cli.js"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4.6.4",
@@ -54,12 +55,14 @@
     "@storybook/react-webpack5": "^8.3.5",
     "@storybook/test": "^8.3.5",
     "@types/react": "~18.2.79",
+    "@wavemaker/prefab-generator": "^0.0.1",
     "babel-loader": "^8.2.3",
     "babel-plugin-react-docgen-typescript": "^1.5.1",
     "babel-plugin-react-native-web": "^0.19.10",
     "chromatic": "^11.16.5",
     "cross-env": "^7.0.3",
     "storybook": "^8.3.5",
+    "storybook-addon-storybooktoprefab": "^1.0.2",
     "typescript": "~5.3.3"
   },
   "resolutions": {

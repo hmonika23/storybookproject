@@ -1,0 +1,74 @@
+{
+    "components": [{
+        "name": "radar",
+        "version": "1.0.0",
+        "displayName": "Radar-Chart",
+        "baseDir": "./components",
+        "module": "require('./Radar/Radar').default",
+        "include": [
+            "./Radar/Radar.js"
+        ],
+        "props": [{
+            "name": "dataSets",
+            "isList": true,
+            "type": "object",
+            "defaultValue": [
+                [100, 100, 20, 100, 80],
+                [20, 85, 30, 20, 20],
+                [88, 20, 100, 58, 80]
+            ]
+        },{
+            "name": "labels",
+            "description": "The labels corresponding to each axis of the radar chart.",
+            "type": "string",
+            "isList": true,
+            "defaultValue": ["Math", "R-coding", "Music", "Biology", "English"]
+        },{
+            "name": "dataLabels",
+            "description": "Labels for each dataset in the radar chart.",
+            "type": "string",
+            "isList": true,
+            "defaultValue": ["mister-a", "mister-b", "mister-c"]
+        },{
+            "name": "colors",
+            "description": "Colors for polygons.",
+            "type": "string",
+            "isList": true,
+            "defaultValue": ["rgba(124,73,156,0.3)", "rgba(141,149,196,0.3)", "rgba(146,179,213,0.3)"]
+        }],
+        "packages": []
+    }, {
+        "name": "speedometer",
+        "version": "1.0.0",
+        "displayName": "Speedometer",
+        "baseDir": "./components",
+        "module": "require('./Speedometer/Speedometer').default",
+        "include": [
+            "./Speedometer/Speedometer.js"
+        ],
+        "props": [{
+            "name": "speed",
+            "description": "The current speed value displayed on the speedometer (in km/h).",
+            "type": "number",
+            "defaultValue": 23
+        },{
+            "name": "duration",
+            "description": "The duration (in milliseconds) for the animation to complete when the speed changes",
+            "type": "number",
+            "defaultValue": 5000
+        },{
+            "name": "label",
+            "description": "The label displayed indicating the distance or value shown on the speedometer.",
+            "defaultValue": "Total Distance"
+        },{
+            "name": "startColor",
+            "description": "The start color of the gradient for the speedometer gauge.",
+            "defaultValue": "#800080"
+        },{
+            "name": "endColor",
+            "description": "The end color of the gradient for the speedometer gauge.",
+            "defaultValue": "#4e67dc"
+        }],
+        "packages": []
+    }]
+}
